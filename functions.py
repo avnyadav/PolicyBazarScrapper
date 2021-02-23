@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 def selectRadioButton(browser,radio_button_els,value):
     try:
-        saveRadionOptionsValue(radio_button_els)
+
         n_button=len(radio_button_els)
         for i in range(n_button):
             print(radio_button_els[i].get_attribute('value'))
@@ -21,15 +21,16 @@ def selectRadioButton(browser,radio_button_els,value):
 
 
 
-def saveRadionOptionsValue(radio_button_els):
-    data=[]
-    idx=0
-    for r in radio_button_els:
-        data.append({r.get_attribute('name')+str(idx):r.get_attribute('value')})
-        idx=idx+1
-
-    with open('radio.txt','ab') as f:
-        f.write(json.dumps(data).encode())
+def getRadionOptionsValue(radio_button_els):
+    try:
+        data=[]
+        idx=0
+        for r in radio_button_els:
+            data.append(r.get_attribute('value'))
+            idx=idx+1
+        return data
+    except Exception as e:
+        raise str(e)
 
 
 

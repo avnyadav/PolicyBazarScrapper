@@ -3,17 +3,17 @@ from selenium import webdriver
 import time
 import functions as usful_funct
 from selenium.webdriver.support.select import Select
-
+import pandas as pd
 from selenium.webdriver.common.action_chains import ActionChains
 
-url="https://health.policybazaar.com/?pq=health0&utm_content=home_v10"
+url="https://www.policybazaar.com/health-insurance/health-insurance-india/"
 print(Mobile_Number,Name)
 
 
 
 browser=webdriver.Chrome()
 
-
+browser.maximize_window()
 browser.get(url)
 
 time.sleep(5)
@@ -22,7 +22,7 @@ time.sleep(5)
 <input type="radio" value="1" name="radio-group-gender" checked="checked" class="radio-group-gender">
 <input type="radio" value="2" name="radio-group-gender" class="radio-group-gender">
 """
-radio_gender_btn_name='gender'
+radio_gender_btn_name='radio-group-gender'
 radio_btn_gender_option_el=browser.find_elements_by_name(radio_gender_btn_name)
 time.sleep(2)
 
@@ -30,42 +30,19 @@ time.sleep(2)
 usful_funct.selectRadioButton(browser,radio_btn_gender_option_el,2)
 
 # selecting
-input_box_name="name"
-input_name_el=browser.find_element_by_name(input_box_name)
 
-input_box_mobile_no="number"
-input_mob_el=browser.find_element_by_name(input_box_mobile_no)
+input_box_name="txtName"
+input_name_el=browser.find_element_by_class_name(input_box_name)
+
+input_box_mobile_no="mobNumber"
+input_mob_el=browser.find_element_by_class_name(input_box_mobile_no)
 print(input_name_el.get_attribute('placeholder'))
 print(input_mob_el.get_attribute('placeholder'))
 
 input_name_el.send_keys(Name)
 input_mob_el.send_keys(Mobile_Number)
 
-continue_btn="CONTINUE"
 
-continue_btn_el=browser.find_element_by_css_selector("input[type='submit']")
-
-if continue_btn_el.get_attribute('value')==continue_btn:
-    continue_btn_el.click()
-
-radio_btn_profile_name="profile"
-radio_btn_profile_el=browser.find_elements_by_name(radio_btn_profile_name)
-usful_funct.selectRadioButton(browser,radio_btn_profile_el,'6')
-
-
-"""
-<input type="text" class="input_box txtName input_right" maxlength="90" placeholder="Full Name">
-
-"""
-"""
-<input type="tel" autocomplete="off" class="input_box mobNumber input_right" id="name5" placeholder="10 - digit mobile number" minlength="10" maxlength="10" data-country-std-code="91">
-"""
-
-
-"""
-<button class="btn btnHealthStep1 btnQuote" data-step="1">View Plans</button>
-"""
-'''
 btn_healthstep1_el=browser.find_element_by_class_name("btnHealthStep1")
 btn_healthstep1_el.click()
 
@@ -77,10 +54,32 @@ like_to_insure_value='family'
 usful_funct.selectRadioButton(browser,radio_like_to_insure_option_el,like_to_insure_value)
 
 time.sleep(3)
+
+like_to_insure="chkFamilyMembers"
+checkbox_like_to_insure=browser.find_elements_by_class_name(like_to_insure)
+
+value=usful_funct.getRadionOptionsValue(checkbox_like_to_insure)
+print(value)
+
+usful_funct.selectRadioButton(browser,checkbox_like_to_insure,value[0])
+
+
+age=browser.find_element_by_class_name("box-Self")
+age_select_el="chkMemberAge"
+select_age = Select(age.find_element_by_class_name(age_select_el))
+
+select_age.select_by_index(3)
+continue_btn_name="btnHealthStep2"
+continue_btn_heath2=browser.find_element_by_class_name(continue_btn_name)
+time.sleep(5)
+continue_btn_heath2.click()
+#continue_btn_heath2.click()
+
+"""
 if like_to_insure_value=='Self':
-    """
-    <select class="input_box placeholder chkMemberEldestAge">
-    """
+    
+ #   <select class="input_box placeholder chkMemberEldestAge">
+   
     print("Hi")
     age_select_el='chkMemberEldestAge'
     select_age=Select(browser.find_element_by_class_name(age_select_el))
@@ -124,11 +123,8 @@ if like_to_insure_value=='Self':
     premium_amount=browser.find_elements_by_class_name("premium_button")
     for i in premium_amount:
         print(i.text)
-        
-        '''
 
-
-
+"""
 
 
 
