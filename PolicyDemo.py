@@ -55,14 +55,25 @@ time.sleep(3)
 my_family="full"
 myself=browser.find_elements_by_class_name(my_family)[0]
 myself.click()
+
+
 my_family="kids"
 kids=browser.find_elements_by_class_name(my_family)[0]
 kids.click()
 time.sleep(3)
 select_age = Select(browser.find_element_by_class_name("select_family_box"))
 select_age.select_by_index(3)
-select_age = Select(browser.find_element_by_class_name("select_family_box_kid"))
-select_age.select_by_index(3)
+time.sleep(2)
+increse_child_count=browser.find_elements_by_class_name("circle_kids")
+for increase_btn in increse_child_count:
+    print("BTN value",increase_btn.text)
+    if increase_btn.text=='+':
+        increase_btn.click()
+time.sleep(2)
+child_age_els=browser.find_elements_by_class_name("select_family_box_kid")
+for child_age_el in child_age_els:
+    select_age = Select(child_age_el)
+    select_age.select_by_index(3)
 
 continue_btn = browser.find_element_by_css_selector("input[type='submit']")
 continue_btn.click()
@@ -79,22 +90,26 @@ div_btn_no.click()
 i=0
 final_df=[]
 data_df=[]
-while i!=10:
+while i!=5:
     try:
         print(data_df)
         time.sleep(3)
         data=browser.find_elements_by_class_name("quotes_more_plans")
-        print(len(data))
+        data_df=[]
         for d in data:
             print(d.click())
             content=browser.find_elements_by_class_name("quotes_content_desktop")
+
             for c in content:
+
                 plan_name=c.find_element_by_class_name("quotes_plan_name")
+
                 cover_amount=c.find_element_by_class_name("span_cover_content")
                 facility = c.find_element_by_class_name("span_network")
                 n_hospital = c.find_element_by_class_name("span_network_content")
                 monthly_premium_amount = c.find_element_by_class_name("premium_button")
                 annually_premium_amount = c.find_element_by_class_name("annually_premium")
+
                 data_df.append(
                     {
                       'plan_name':plan_name.text,
@@ -107,6 +122,9 @@ while i!=10:
 
                     }
                 )
+                if len(final_df) < len(data_df):
+                    final_df = data_df
+
             """
             <div class="top_quotes_content"><div class="planContent_container ">
             <span class="quotes_plan_name">Care Advantage - Upto Suite Room </span>
@@ -126,8 +144,7 @@ while i!=10:
             """
 
 
-        if len(final_df)<len(data_df):
-            final_df=data
+
         btn = browser.find_element_by_class_name("call-to-action2")
         btn.click()
 
@@ -219,13 +236,13 @@ if like_to_insure_value=='Self':
 """
 
 
-
-df=pd.DataFrame(final_df)
-
-df.drop_duplicates(inplace=True)
 mgdb=MongoDBOperation()
-mgdb.insertDataFrame(df)
-
+database_name="PolicyBazar"
+collection_name="policy"
+if len(final_df)>0:
+    print("inserted")
+    mgdb.insertDataFrame(database_name,collection_name,pd.DataFrame(final_df))
+    pd.DataFrame(final_df).to_csv("PolicyBazarData.csv")
 
 
 
