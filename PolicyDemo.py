@@ -1,5 +1,5 @@
 from MongoDBOperation import MongoDBOperation
-from conf import mobile_number, name
+from conf import mobile_number, name,Age_range,Gender
 from selenium import webdriver
 import time
 import functions as usful_funct
@@ -158,6 +158,10 @@ def getPolicyBazarHealthPreimumDetail(name,person_age,child_ages,mobile_number,g
 
                         data_df.append(
                             {
+                                'Person_age':person_age,
+                                'No_of_child':n_child,
+                                'Child_ages':child_ages,
+                                'Gender':gender,
                               'plan_name':plan_name.text,
                                 'cover':cover_amount.text,
                                 'Facility':facility.text,
@@ -302,10 +306,29 @@ if len(final_df)>0:
 
 if __name__=="__main__":
     try:
+        for person_age in Age_range:
+            for gender in Gender:
+                n_child,child_ages=usful_funct.getNumberOfChildAndAges(person_age)
 
+                for child_count in range(n_child+1):
+                    print(" name :{0} person age :{1} child ages: {2}"
+                          " mobile number: {3}"
+                          " gender: {4}"
+                          " n_child:{5}".format(name
+                                               ,person_age,child_ages[:child_count],mobile_number,gender,child_count)
+                          )
+                    df = getPolicyBazarHealthPreimumDetail(name, person_age=person_age,
+                     child_ages=child_ages[:child_count],
+                                                               mobile_number=mobile_number,
+                                                               gender=gender, n_child=child_count)
+                    pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",mode="a+")
+
+
+        """
         df=getPolicyBazarHealthPreimumDetail(name, person_age=29, child_ages=[8,4], mobile_number=mobile_number,
                                           gender="Female", n_child=2)
         pd.DataFrame(df).to_csv("PolicyBazarDemo.csv")
+        """
     except Exception as e:
         print(str(e))
 
