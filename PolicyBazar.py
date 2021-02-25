@@ -1,4 +1,4 @@
-from conf import Mobile_Number,Name
+from conf import mobile_number,name
 from selenium import webdriver
 import time
 import functions as usful_funct
@@ -7,7 +7,7 @@ import pandas as pd
 from selenium.webdriver.common.action_chains import ActionChains
 
 url="https://www.policybazaar.com/health-insurance/health-insurance-india/"
-print(Mobile_Number,Name)
+print(mobile_number, name)
 
 
 
@@ -39,8 +39,8 @@ input_mob_el=browser.find_element_by_class_name(input_box_mobile_no)
 print(input_name_el.get_attribute('placeholder'))
 print(input_mob_el.get_attribute('placeholder'))
 
-input_name_el.send_keys(Name)
-input_mob_el.send_keys(Mobile_Number)
+input_name_el.send_keys(name)
+input_mob_el.send_keys(mobile_number)
 
 
 btn_healthstep1_el=browser.find_element_by_class_name("btnHealthStep1")

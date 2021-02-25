@@ -1,4 +1,4 @@
-from conf import Mobile_Number,Name
+from conf import mobile_number,name
 from selenium import webdriver
 import time
 import json
