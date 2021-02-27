@@ -2639,7 +2639,6 @@
 33,30,1,[11],Female,Optima Restore,₹ 5L,Cashless Hospitals,410,₹900/month,"₹ 10,796 annually"
 34,30,1,[11],Female,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹875/month,"₹ 10,493 annually"
 35,30,1,[11],Female,Activ Assure - Diamond,₹ 5L,Cashless Hospitals,278,₹684/month,"₹ 8,198 annually"
-,Person_age,No_of_child,Child_ages,Gender,plan_name,cover,Facility,No of Hospitals,Monthly charge,Annually charge
 0,30,2,"[11, 8]",Female,Care Advantage,₹ 25L,Cashless Hospitals,270,"₹1,244/month","₹ 14,922 annually"
 1,30,2,"[11, 8]",Female,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,536/month","₹ 18,426 annually"
 2,30,2,"[11, 8]",Female,Health Optima,₹ 5L,Cashless Hospitals,300,"₹1,023/month","₹ 12,266 annually"
@@ -6621,39 +6620,39 @@
 0,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 1,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 2,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-3,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-4,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-5,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+3,43,0,[],Male,,,,,,
+4,43,0,[],Male,,,,,,
+5,43,0,[],Male,,,,,,
 6,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 7,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 8,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-9,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-10,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-11,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+9,43,0,[],Male,,,,,,
+10,43,0,[],Male,,,,,,
+11,43,0,[],Male,,,,,,
 12,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 13,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 14,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-15,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-16,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-17,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+15,43,0,[],Male,,,,,,
+16,43,0,[],Male,,,,,,
+17,43,0,[],Male,,,,,,
 18,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 19,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 20,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-21,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-22,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-23,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+21,43,0,[],Male,,,,,,
+22,43,0,[],Male,,,,,,
+23,43,0,[],Male,,,,,,
 24,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 25,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 26,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-27,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-28,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-29,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+27,43,0,[],Male,,,,,,
+28,43,0,[],Male,,,,,,
+29,43,0,[],Male,,,,,,
 30,43,0,[],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,₹886/month,"₹ 10,625 annually"
 31,43,0,[],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,251/month","₹ 15,006 annually"
 32,43,0,[],Male,Medi Classic,₹ 5L,Cashless Hospitals,300,₹700/month,"₹ 8,398 annually"
-33,43,0,[],Male,Optima Restore,₹ 5L,Cashless Hospitals,410,₹790/month,"₹ 9,471 annually"
-34,43,0,[],Male,My:health Suraksha Silver Smart,₹ 5L,Cashless Hospitals,410,₹862/month,"₹ 10,334 annually"
-35,43,0,[],Male,1 Cr Sum Insured **,₹ 1Cr,Cashless Hospitals,278,"₹1,101/month","₹ 13,209 annually"
+33,43,0,[],Male,,,,,,
+34,43,0,[],Male,,,,,,
+35,43,0,[],Male,,,,,,
 0,43,1,[3],Male,Care Advantage,₹ 25L,Cashless Hospitals,270,"₹1,085/month","₹ 13,009 annually"
 1,43,1,[3],Male,1Cr Super Saver,₹ 1Cr,Cashless Hospitals,256,"₹1,523/month","₹ 18,270 annually"
 2,43,1,[3],Male,Health Optima,₹ 5L,Cashless Hospitals,300,₹876/month,"₹ 10,508 annually"

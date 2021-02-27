@@ -223,16 +223,16 @@ if __name__=="__main__":
                                                         mobile_number=tracker['mobile_number'],
                                                         gender=tracker['gender'],
                                                        n_child=tracker['child_count'])
-                if is_header_required:
+                if is_header_required and idx==0:
                     pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",mode="a+")
                     is_header_required=False
                 else:
                     pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv", header=None,mode="a+")
 
                 trackers[idx]['is_processed']=1
-                idx += 1
-                with open('data.txt', 'w') as f:
-                    json.dump(trackers, f, ensure_ascii=False,indent=4)
+            idx += 1
+            with open('data.txt', 'w') as f:
+                json.dump(trackers, f, ensure_ascii=False,indent=4)
 
 
 
