@@ -211,33 +211,30 @@ if len(final_df)>0:
 
 if __name__=="__main__":
     try:
-        tracker=usful_funct.getTracker()
-        idx_counter=0
-        for person_age in Age_range:
-            for gender in Gender:
-                n_child,child_ages=usful_funct.getNumberOfChildAndAges(person_age)
+        trackers=usful_funct.getTracker()
+        is_header_required=True
+        idx=0
+        for tracker in trackers:
+            print(tracker)
+            if tracker['is_processed']==0:
+                df = getPolicyBazarHealthPreimumDetail(tracker['name'],
+                                                       person_age=tracker['person_age'],
+                                                       child_ages=tracker['child_ages'],
+                                                        mobile_number=tracker['mobile_number'],
+                                                        gender=tracker['gender'],
+                                                       n_child=tracker['child_count'])
+                if is_header_required:
+                    pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",mode="a+")
+                    is_header_required=False
+                else:
+                    pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv", header=None,mode="a+")
 
-                for child_count in range(n_child+1):
-                    print(" currently runing for --> name :{0} person age :{1} child ages: {2}"
-                          " mobile number: {3}"
-                          " gender: {4}"
-                          " n_child:{5}".format(name
-                                               ,person_age,child_ages[:child_count],mobile_number,gender,child_count)
-                          )
+                trackers[idx]['is_processed']=1
+                idx += 1
+                with open('data.txt', 'w') as f:
+                    json.dump(trackers, f, ensure_ascii=False,indent=4)
 
 
-
-                    if tracker[idx_counter]['is_processed']==0:
-                        df = getPolicyBazarHealthPreimumDetail(name, person_age=person_age,
-                        child_ages=child_ages[:child_count],
-                                                                   mobile_number=mobile_number,
-                                                                   gender=gender, n_child=child_count)
-                        pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",header=None,mode="a+")
-                        tracker[idx_counter]['is_processed']=1
-                    with open('data.txt', 'w') as f:
-                        json.dump(tracker, f, ensure_ascii=False)
-                    idx_counter += 1
-                    #print(tracker)
 
         """
         df=getPolicyBazarHealthPreimumDetail(name, person_age=29, child_ages=[8,4], mobile_number=mobile_number,
@@ -246,8 +243,8 @@ if __name__=="__main__":
         """
     except Exception as e:
         with open('data.txt', 'w') as f:
-            json.dump(tracker, f, ensure_ascii=False)
-        print(tracker)
+            json.dump(trackers, f, ensure_ascii=False,indent=4)
+        print(trackers)
         print(str(e))
 
 
