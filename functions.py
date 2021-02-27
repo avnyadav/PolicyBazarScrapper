@@ -25,7 +25,6 @@ def getNextChildAge(parent_age,current_child_age,parent_child_age_diff=18):
 
 def getNumberOfChildAndAges(parent_age,parent_child_age_diff=18):
     """
-
     :param parent_age: parent age
     :param parent_child_age_diff: default 18
     :return: tuples of (n_child,child_age_list)
@@ -50,6 +49,17 @@ def getNumberOfChildAndAges(parent_age,parent_child_age_diff=18):
         raise Exception(str(e))
 
 
+def getTracker():
+    """
+
+    :return: List of tracker
+    """
+    try:
+        with open('data.txt', 'r') as d:
+            res = json.load(d)
+        return res
+    except Exception as e:
+        raise Exception(str(e))
 
 
 def selectRadioButton(browser,radio_button_els,value):
@@ -57,11 +67,11 @@ def selectRadioButton(browser,radio_button_els,value):
 
         n_button=len(radio_button_els)
         for i in range(n_button):
-            print(radio_button_els[i].get_attribute('value'))
+            #print(radio_button_els[i].get_attribute('value'))
             if radio_button_els[i].get_attribute('value')==str(value):
                 browser.implicitly_wait(10)
                 ActionChains(browser).move_to_element(radio_button_els[i]).click(radio_button_els[i]).perform()
-                print("not visible")
+                #print("not visible")
                 return True
     except Exception as e:
         raise Exception("File funtions.py throw a exception from method selectRadioButton"+str(e))

@@ -4,6 +4,7 @@ from selenium import webdriver
 import time
 import functions as usful_funct
 from selenium.webdriver.support.select import Select
+import json
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.action_chains import ActionChains
@@ -138,14 +139,13 @@ def getPolicyBazarHealthPreimumDetail(name,person_age,child_ages,mobile_number,g
         data_df=[]
         while i!=5:
             try:
-                print(data_df)
+                #print(data_df)
                 time.sleep(3)
                 data=browser.find_elements_by_class_name("quotes_more_plans")
                 data_df=[]
                 for d in data:
-                    print(d.click())
+                    #print(d.click())
                     content=browser.find_elements_by_class_name("quotes_content_desktop")
-
                     for c in content:
 
                         plan_name=c.find_element_by_class_name("quotes_plan_name")
@@ -176,25 +176,6 @@ def getPolicyBazarHealthPreimumDetail(name,person_age,child_ages,mobile_number,g
                             final_df = data_df
 
 
-                    """
-                    <div class="top_quotes_content"><div class="planContent_container ">
-                    <span class="quotes_plan_name">Care Advantage - Upto Suite Room </span>
-                    </div><div class="cover_container">
-                    <div class="div_cover">
-                    <span class="span_cover">Cover</span>
-                    <span class="span_cover_content ">₹ 1Cr</span>
-                    </div><div class="div_network " id="CashlessHospitalonQuotes">
-                    <span class="span_network">Cashless Hospitals</span>
-                    <span class="span_network_content ">270</span></div>
-                    </div><div class="premium_container ">
-                    <div class="premium_button" id="ProceedToProduct">₹1,445/month</div>
-                    <span class="annually_premium">₹ 17,331 annually</span>
-                    </div><div class="shortlist_container ">
-                    <div class="Path_shortlist noAnimation coachMark"><img alt="shortlistIcon" class="shortlist_icon"
-                     src="https://static.pbcdn.in/health-cdn/images/insurer-logo/quotes-logos/shortlist.svg"></div></div></div>
-                    """
-
-
 
                 btn = browser.find_element_by_class_name("call-to-action2")
                 btn.click()
@@ -213,82 +194,6 @@ def getPolicyBazarHealthPreimumDetail(name,person_age,child_ages,mobile_number,g
         raise e
 
 
-'''
-<div class="box-container full"><div class="field_container">
-<div class="checkbox"><label><input id="selfrdo" type="checkbox">
- <span> Spouse</span></label></div></div> <!----></div>
-'''
-'''
-like_to_insure = "chkFamilyMembers"
-checkbox_like_to_insure = browser.find_elements_by_class_name(like_to_insure)
-
-value = usful_funct.getRadionOptionsValue(checkbox_like_to_insure)
-print(value)
-
-usful_funct.selectRadioButton(browser, checkbox_like_to_insure, value[0])
-
-age = browser.find_element_by_class_name("box-Self")
-age_select_el = "chkMemberAge"
-select_age = Select(age.find_element_by_class_name(age_select_el))
-
-select_age.select_by_index(3)
-continue_btn_name = "btnHealthStep2"
-continue_btn_heath2 = browser.find_element_by_class_name(continue_btn_name)
-time.sleep(5)
-continue_btn_heath2.click()
-# continue_btn_heath2.click()
-'''
-"""
-if like_to_insure_value=='Self':
-
- #   <select class="input_box placeholder chkMemberEldestAge">
-
-    print("Hi")
-    age_select_el='chkMemberEldestAge'
-    select_age=Select(browser.find_element_by_class_name(age_select_el))
-
-    select_age.select_by_index(3)
-
-    possible_age=browser.find_element_by_class_name(age_select_el)
-    options=possible_age.find_elements_by_tag_name("option")
-    age=[ p.get_attribute("value")  for p in options]
-    print(age.index('20'),age.index('24'))
-    select_age.select_by_index(age.index('34'))
-    time.sleep(1)
-    continue_btn_name="btnHealthStep2"
-    continue_btn_heath2=browser.find_element_by_class_name(continue_btn_name)
-    continue_btn_heath2.click()
-
-    radio_btn_popular_city_name="city"
-    radio_btn_popular_city=browser.find_elements_by_name(radio_btn_popular_city_name)
-    select_city_name="Pune(Maharashtra)"
-    time.sleep(2)
-    usful_funct.selectRadioButton(browser,radio_btn_popular_city,select_city_name)
-    time.sleep(5)
-
-    radio_btn_is_medication_name="radio-group-ped"
-    is_medication_value="0"
-    radio_btn_is_medication=browser.find_elements_by_name(radio_btn_is_medication_name)
-    usful_funct.selectRadioButton(browser,radio_btn_is_medication,is_medication_value)
-
-    time.sleep(5)
-
-    plan_list_name="quotes_stack"
-    insurance_div=browser.find_elements_by_class_name(plan_list_name)
-    time.sleep(10)
-    try:
-
-        btn=browser.find_element_by_class_name("call-to-action2")
-        btn.click()
-    except Exception as e:
-        pass
-
-    premium_amount=browser.find_elements_by_class_name("premium_button")
-    for i in premium_amount:
-        print(i.text)
-
-"""
-
 """
 mgdb=MongoDBOperation()
 database_name="PolicyBazar"
@@ -306,23 +211,33 @@ if len(final_df)>0:
 
 if __name__=="__main__":
     try:
+        tracker=usful_funct.getTracker()
+        idx_counter=0
         for person_age in Age_range:
             for gender in Gender:
                 n_child,child_ages=usful_funct.getNumberOfChildAndAges(person_age)
 
                 for child_count in range(n_child+1):
-                    print(" name :{0} person age :{1} child ages: {2}"
+                    print(" currently runing for --> name :{0} person age :{1} child ages: {2}"
                           " mobile number: {3}"
                           " gender: {4}"
                           " n_child:{5}".format(name
                                                ,person_age,child_ages[:child_count],mobile_number,gender,child_count)
                           )
-                    df = getPolicyBazarHealthPreimumDetail(name, person_age=person_age,
-                     child_ages=child_ages[:child_count],
-                                                               mobile_number=mobile_number,
-                                                               gender=gender, n_child=child_count)
-                    pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",mode="a+")
 
+
+
+                    if tracker[idx_counter]['is_processed']==0:
+                        df = getPolicyBazarHealthPreimumDetail(name, person_age=person_age,
+                        child_ages=child_ages[:child_count],
+                                                                   mobile_number=mobile_number,
+                                                                   gender=gender, n_child=child_count)
+                        pd.DataFrame(df).to_csv("PolicyBazarCompleteData.csv",header=None,mode="a+")
+                        tracker[idx_counter]['is_processed']=1
+                    with open('data.txt', 'w') as f:
+                        json.dump(tracker, f, ensure_ascii=False)
+                    idx_counter += 1
+                    #print(tracker)
 
         """
         df=getPolicyBazarHealthPreimumDetail(name, person_age=29, child_ages=[8,4], mobile_number=mobile_number,
@@ -330,6 +245,9 @@ if __name__=="__main__":
         pd.DataFrame(df).to_csv("PolicyBazarDemo.csv")
         """
     except Exception as e:
+        with open('data.txt', 'w') as f:
+            json.dump(tracker, f, ensure_ascii=False)
+        print(tracker)
         print(str(e))
 
 
